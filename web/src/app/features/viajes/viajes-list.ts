@@ -1,10 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogModule
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -18,6 +14,8 @@ import { RutasService } from '../../core/services/rutas.service';
 import { VehiculosService } from '../../core/services/vehiculos.service';
 import type { Estacion, Ruta, Vehiculo, Viaje } from '../../models/api.models';
 import { shortId } from '../../shared/ids';
+import type { ConfirmDialogData } from '../../shared/confirm-dialog/confirm-dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog';
 import type {
   ViajeCreatePayload,
   ViajeUpdatePayload
@@ -27,32 +25,6 @@ import {
   ViajesDialogComponent,
   ViajesDialogData
 } from './viajes-dialog';
-
-interface ConfirmDialogData {
-  title: string;
-  message: string;
-}
-
-@Component({
-  selector: 'app-simple-confirm-dialog',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-  template: `
-    <h2 mat-dialog-title>{{ data.title }}</h2>
-    <mat-dialog-content>{{ data.message }}</mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-stroked-button mat-dialog-close="false" type="button">
-        Cancelar
-      </button>
-      <button mat-raised-button color="warn" [mat-dialog-close]="true" type="button">
-        Eliminar
-      </button>
-    </mat-dialog-actions>
-  `
-})
-export class SimpleConfirmDialogComponent {
-  readonly data = inject<ConfirmDialogData>(MAT_DIALOG_DATA);
-}
 
 function formatFechaHora(value: string): string {
   const d = new Date(value);
@@ -235,11 +207,12 @@ export class ViajesListComponent implements OnInit {
   }
 
   confirmDelete(viaje: Viaje): void {
-    const ref = this.dialog.open(SimpleConfirmDialogComponent, {
+    const ref = this.dialog.open(ConfirmDialogComponent, {
       width: '360px',
       data: {
-        title: 'Eliminar viaje',
-        message: `¿Desea eliminar el viaje ${shortId(viaje.id_viaje)}?`
+        titulo: 'Eliminar viaje',
+        mensaje: `¿Desea eliminar el viaje ${shortId(viaje.id_viaje)}?`,
+        textoConfirmar: 'Eliminar'
       } satisfies ConfirmDialogData
     });
 

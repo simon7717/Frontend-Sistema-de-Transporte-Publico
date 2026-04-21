@@ -1,17 +1,15 @@
 ﻿import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogModule
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 
 import { shortId } from '../../shared/ids';
+import type { ConfirmDialogData } from '../../shared/confirm-dialog/confirm-dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog';
 import type {
   UsuarioCreatePayload,
   UsuarioUpdatePayload
@@ -22,28 +20,6 @@ import {
   UsuarioDialogData,
   UsuariosDialogComponent
 } from './usuarios-dialog';
-
-interface ConfirmDialogData {
-  title: string;
-  message: string;
-}
-
-@Component({
-  selector: 'app-simple-confirm-dialog',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-  template: `
-    <h2 mat-dialog-title>{{ data.title }}</h2>
-    <mat-dialog-content>{{ data.message }}</mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-stroked-button mat-dialog-close="false" type="button">Cancelar</button>
-      <button mat-raised-button color="warn" [mat-dialog-close]="true" type="button">Eliminar</button>
-    </mat-dialog-actions>
-  `
-})
-export class SimpleConfirmDialogComponent {
-  readonly data = inject<ConfirmDialogData>(MAT_DIALOG_DATA);
-}
 
 @Component({
   selector: 'app-usuarios-list',
@@ -118,11 +94,12 @@ export class UsuariosListComponent {
   }
 
   confirmDelete(usuario: Usuario): void {
-    const ref = this.dialog.open(SimpleConfirmDialogComponent, {
+    const ref = this.dialog.open(ConfirmDialogComponent, {
       width: '360px',
       data: {
-        title: 'Eliminar usuario',
-        message: `¿Desea eliminar a ${usuario.nombre_usuario}?`
+        titulo: 'Eliminar usuario',
+        mensaje: `¿Desea eliminar a ${usuario.nombre_usuario}?`,
+        textoConfirmar: 'Eliminar'
       } satisfies ConfirmDialogData
     });
 

@@ -2,11 +2,7 @@
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogModule
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -15,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { AuditContextService } from '../../core/audit-context.service';
 import type { Ruta } from '../../models/api.models';
 import { shortId } from '../../shared/ids';
+import type { ConfirmDialogData } from '../../shared/confirm-dialog/confirm-dialog';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog';
 import type {
   RutaCreatePayload,
   RutaUpdatePayload
@@ -24,28 +22,6 @@ import {
   RutasDialogComponent,
   RutasDialogData
 } from './rutas-dialog';
-
-interface ConfirmDialogData {
-  title: string;
-  message: string;
-}
-
-@Component({
-  selector: 'app-simple-confirm-dialog',
-  standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
-  template: `
-    <h2 mat-dialog-title>{{ data.title }}</h2>
-    <mat-dialog-content>{{ data.message }}</mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-stroked-button mat-dialog-close="false" type="button">Cancelar</button>
-      <button mat-raised-button color="warn" [mat-dialog-close]="true" type="button">Eliminar</button>
-    </mat-dialog-actions>
-  `
-})
-export class SimpleConfirmDialogComponent {
-  readonly data = inject<ConfirmDialogData>(MAT_DIALOG_DATA);
-}
 
 type RutaFilterMode = 'todas' | 'activas';
 
@@ -154,11 +130,12 @@ export class RutasListComponent {
   }
 
   confirmDelete(ruta: Ruta): void {
-    const ref = this.dialog.open(SimpleConfirmDialogComponent, {
+    const ref = this.dialog.open(ConfirmDialogComponent, {
       width: '360px',
       data: {
-        title: 'Eliminar ruta',
-        message: `¿Desea eliminar la ruta ${ruta.codigo}?`
+        titulo: 'Eliminar ruta',
+        mensaje: `¿Desea eliminar la ruta ${ruta.codigo}?`,
+        textoConfirmar: 'Eliminar'
       } satisfies ConfirmDialogData
     });
 
