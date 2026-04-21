@@ -1,0 +1,112 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.shell-container {
+  height: 100%;
+}
+
+.shell-sidenav {
+  width: 220px;
+  box-sizing: border-box;
+  background-color: var(--mat-sys-surface);
+  border-inline-end: 1px solid color-mix(in srgb, var(--mat-sys-outline) 35%, transparent);
+  transition: width 240ms ease;
+
+  &--collapsed {
+    width: 64px;
+
+    .shell-nav-list a mat-icon {
+      margin-inline: auto;
+    }
+
+    .shell-nav-list {
+      --mat-list-list-item-leading-icon-start-space: 0;
+      --mat-list-list-item-leading-icon-end-space: 0;
+    }
+
+    .shell-nav-list .mdc-list-item__content {
+      justify-content: center;
+    }
+
+    .shell-nav-list .mat-mdc-list-item-unscoped-content {
+      justify-content: center;
+    }
+  }
+}
+
+.shell-nav-list {
+  padding-top: 0.5rem;
+
+  a.active-link {
+    background-color: color-mix(in srgb, var(--mat-sys-primary) 14%, transparent);
+  }
+}
+
+.shell-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.shell-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  box-sizing: border-box;
+  min-height: 56px;
+  padding-block: 0;
+  background-color: var(--mat-sys-primary) !important;
+  color: var(--mat-sys-on-primary);
+
+  &__title {
+    margin-inline-start: 0.25rem;
+    font: var(--mat-sys-title-large);
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__user-field {
+    flex: 0 0 auto;
+    width: min(200px, 38vw);
+    margin: 0;
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      background-color: color-mix(in srgb, var(--mat-sys-on-primary) 12%, transparent);
+      padding-block: 0;
+    }
+
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    ::ng-deep .mat-mdc-form-field-infix {
+      min-height: 40px;
+      padding-block: 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    ::ng-deep .mat-mdc-floating-label,
+    ::ng-deep .mat-mdc-select,
+    ::ng-deep .mat-mdc-select-value {
+      color: var(--mat-sys-on-primary);
+    }
+
+    ::ng-deep .mat-mdc-select-arrow {
+      color: var(--mat-sys-on-primary);
+    }
+  }
+}
+
+.shell-main {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  box-sizing: border-box;
+}
