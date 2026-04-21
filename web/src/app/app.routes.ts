@@ -12,9 +12,7 @@ export const routes: Routes = [
     path: 'app',
     canActivate: [auditUserGuard],
     loadComponent: () =>
-      import('./layouts/main-layout/main-layout.component').then(
-        (m) => m.MainLayoutComponent
-      ),
+      import('./features/shell/main-layout').then((m) => m.MainLayoutComponent),
     children: [
       {
         path: 'usuarios',

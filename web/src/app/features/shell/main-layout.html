@@ -1,0 +1,117 @@
+<mat-sidenav-container class="shell-container" autosize>
+  <mat-sidenav
+    class="shell-sidenav"
+    [class.shell-sidenav--collapsed]="collapsed()"
+    [mode]="'side'"
+    [opened]="true"
+    fixedInViewport
+  >
+    <mat-nav-list class="shell-nav-list">
+      <a
+        mat-list-item
+        routerLink="/app/usuarios"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon matListItemIcon>people</mat-icon>
+        @if (!collapsed()) {
+          <span matListItemTitle>Usuarios</span>
+        }
+      </a>
+      <a
+        mat-list-item
+        routerLink="/app/tarjetas"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon matListItemIcon>credit_card</mat-icon>
+        @if (!collapsed()) {
+          <span matListItemTitle>Tarjetas</span>
+        }
+      </a>
+      <a
+        mat-list-item
+        routerLink="/app/estaciones"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon matListItemIcon>location_on</mat-icon>
+        @if (!collapsed()) {
+          <span matListItemTitle>Estaciones</span>
+        }
+      </a>
+      <a
+        mat-list-item
+        routerLink="/app/vehiculos"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon matListItemIcon>directions_bus</mat-icon>
+        @if (!collapsed()) {
+          <span matListItemTitle>Vehículos</span>
+        }
+      </a>
+      <a
+        mat-list-item
+        routerLink="/app/rutas"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon matListItemIcon>route</mat-icon>
+        @if (!collapsed()) {
+          <span matListItemTitle>Rutas</span>
+        }
+      </a>
+      <a
+        mat-list-item
+        routerLink="/app/viajes"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon matListItemIcon>departure_board</mat-icon>
+        @if (!collapsed()) {
+          <span matListItemTitle>Viajes</span>
+        }
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell-content">
+    <mat-toolbar class="shell-toolbar" color="primary">
+      <button
+        mat-icon-button
+        type="button"
+        aria-label="Alternar menú"
+        (click)="toggleSidebar()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="shell-toolbar__title">Transporte Público</span>
+      <span class="shell-toolbar__spacer"></span>
+      <mat-form-field
+        class="shell-toolbar__user-field"
+        appearance="fill"
+        subscriptSizing="dynamic"
+        hideRequiredMarker
+      >
+        <mat-label>Sesión</mat-label>
+        <mat-select [value]="nombreUsuario()" [disabled]="!nombreUsuario()">
+          <mat-option [value]="nombreUsuario()">
+            {{ nombreUsuario() || '…' }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-icon-button
+        type="button"
+        aria-label="Cerrar sesión"
+        (click)="logout()"
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+    <main class="shell-main">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
