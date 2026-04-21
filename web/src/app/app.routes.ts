@@ -17,9 +17,7 @@ export const routes: Routes = [
       {
         path: 'usuarios',
         loadComponent: () =>
-          import('./features/usuarios/usuarios.component').then(
-            (m) => m.UsuariosComponent
-          )
+          import('./features/usuarios/usuarios-list').then((m) => m.UsuariosListComponent)
       },
       {
         path: 'tarjetas',
@@ -31,16 +29,12 @@ export const routes: Routes = [
       {
         path: 'estaciones',
         loadComponent: () =>
-          import('./features/estaciones/estaciones.component').then(
-            (m) => m.EstacionesComponent
-          )
+          import('./features/estaciones/estaciones-list').then((m) => m.EstacionesListComponent)
       },
       {
         path: 'vehiculos',
         loadComponent: () =>
-          import('./features/vehiculos/vehiculos.component').then(
-            (m) => m.VehiculosComponent
-          )
+          import('./features/vehiculos/vehiculos-list').then((m) => m.VehiculosListComponent)
       },
       {
         path: 'rutas',
@@ -56,3 +50,4 @@ export const routes: Routes = [
   },
   { path: '**', redirectTo: 'login' }
 ];
+

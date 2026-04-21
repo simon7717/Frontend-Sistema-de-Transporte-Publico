@@ -1,0 +1,29 @@
+﻿<h2 mat-dialog-title>
+  {{ data.mode === 'create' ? 'Nuevo vehículo' : 'Editar vehículo' }}
+</h2>
+
+<mat-dialog-content>
+  <div class="dialog-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Placa</mat-label>
+      <input matInput [formControl]="form.controls.placa" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Modelo</mat-label>
+      <input matInput [formControl]="form.controls.modelo" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Capacidad</mat-label>
+      <input matInput type="number" [formControl]="form.controls.capacidad" />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button mat-dialog-close type="button">Cancelar</button>
+  <button mat-raised-button color="primary" type="button" (click)="save()">
+    Guardar
+  </button>
+</mat-dialog-actions>
