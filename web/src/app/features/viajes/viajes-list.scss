@@ -1,0 +1,39 @@
+.page {
+  display: grid;
+  gap: 1rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.ruta-filter {
+  width: min(360px, 60vw);
+}
+
+.table {
+  width: 100%;
+  background: var(--mat-sys-surface);
+}
+
+.loader {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.dialog-form {
+  display: grid;
+  gap: 0.75rem;
+  min-width: min(520px, 88vw);
+}
+
