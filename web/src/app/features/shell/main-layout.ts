@@ -17,6 +17,7 @@ import {
 import { AuditContextService } from '../../core/audit-context.service';
 import { environment } from '../../../environments/environment';
 import type { Usuario } from '../../models/api.models';
+import { LoadingBarComponent } from '../../shared/loading-bar/loading-bar';
 
 const SIDEBAR_KEY = 'shell_sidebar_collapsed';
 
@@ -27,6 +28,7 @@ const SIDEBAR_KEY = 'shell_sidebar_collapsed';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    LoadingBarComponent,
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
