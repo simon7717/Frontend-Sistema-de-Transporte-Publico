@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>
+  {{ data.mode === 'create' ? 'Nuevo viaje' : 'Editar viaje' }}
+</h2>
+
+<mat-dialog-content>
+  <div class="dialog-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Ruta</mat-label>
+      <mat-select [formControl]="form.controls.id_ruta">
+        @for (r of rutas; track r.id_ruta) {
+          <mat-option [value]="r.id_ruta">
+            {{ r.codigo }} - {{ r.nombre || 'Sin nombre' }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Vehículo</mat-label>
+      <mat-select [formControl]="form.controls.id_vehiculo">
+        @for (v of vehiculos; track v.id_vehiculo) {
+          <mat-option [value]="v.id_vehiculo">
+            {{ v.placa }} - {{ v.modelo || 'Sin modelo' }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estación origen</mat-label>
+      <mat-select [formControl]="form.controls.id_estacion_origen">
+        @for (e of estaciones; track e.id_estacion) {
+          <mat-option [value]="e.id_estacion">
+            {{ e.nombre }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estación destino</mat-label>
+      <mat-select [formControl]="form.controls.id_estacion_destino">
+        @for (e of estaciones; track e.id_estacion) {
+          <mat-option [value]="e.id_estacion">
+            {{ e.nombre }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha/hora salida</mat-label>
+      <input
+        matInput
+        type="datetime-local"
+        [formControl]="form.controls.fecha_hora_salida"
+      />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-stroked-button mat-dialog-close type="button">Cancelar</button>
+  <button mat-raised-button color="primary" type="button" (click)="save()">
+    Guardar
+  </button>
+</mat-dialog-actions>
+
