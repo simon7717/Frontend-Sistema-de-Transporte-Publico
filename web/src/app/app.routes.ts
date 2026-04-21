@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 import { auditUserGuard } from './core/audit-user.guard';
 
 export const routes: Routes = [
@@ -22,9 +22,7 @@ export const routes: Routes = [
       {
         path: 'tarjetas',
         loadComponent: () =>
-          import('./features/tarjetas/tarjetas.component').then(
-            (m) => m.TarjetasComponent
-          )
+          import('./features/tarjetas/tarjetas-list').then((m) => m.TarjetasListComponent)
       },
       {
         path: 'estaciones',
@@ -39,7 +37,7 @@ export const routes: Routes = [
       {
         path: 'rutas',
         loadComponent: () =>
-          import('./features/rutas/rutas.component').then((m) => m.RutasComponent)
+          import('./features/rutas/rutas-list').then((m) => m.RutasListComponent)
       },
       {
         path: 'viajes',
