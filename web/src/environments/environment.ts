@@ -1,3 +1,4 @@
+/** Desarrollo: `ng serve` reenvía `/api` → backend (proxy.conf.json), sin CORS en el navegador. */
 export const environment = {
-  apiUrl: 'http://localhost:8000'
+  apiUrl: '/api'
 };
