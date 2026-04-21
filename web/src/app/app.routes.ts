@@ -43,6 +43,11 @@ export const routes: Routes = [
         path: 'viajes',
         loadComponent: () =>
           import('./features/viajes/viajes-list').then((m) => m.ViajesListComponent)
+      },
+      {
+        path: '**',
+        loadComponent: () =>
+          import('./features/not-found/not-found').then((m) => m.NotFoundComponent)
       }
     ]
   },
