@@ -42,7 +42,7 @@ export const routes: Routes = [
       {
         path: 'viajes',
         loadComponent: () =>
-          import('./features/viajes/viajes.component').then((m) => m.ViajesComponent)
+          import('./features/viajes/viajes-list').then((m) => m.ViajesListComponent)
       }
     ]
   },
