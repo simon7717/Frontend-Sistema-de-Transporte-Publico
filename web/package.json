@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy:sync-env": "node scripts/write-deploy-env.cjs",
+    "build:deploy": "npm run deploy:sync-env && ng build --configuration deploy",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
