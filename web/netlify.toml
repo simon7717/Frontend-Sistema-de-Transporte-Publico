@@ -1,0 +1,13 @@
+# Netlify (plan gratuito): conecta el repo, base directory "web" si la raíz del repo es el monorepo frontend.
+[build]
+  command = "npm run build:deploy"
+  publish = "dist/web/browser"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA Angular: cualquier ruta sirve index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
