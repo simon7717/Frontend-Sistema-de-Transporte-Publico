@@ -1,5 +1,8 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+# URL del API para build de producción/hosting (generado antes de ng build --configuration deploy)
+/src/environments/environment.deploy.generated.ts
+
 # Compiled output
 /dist
 /tmp
