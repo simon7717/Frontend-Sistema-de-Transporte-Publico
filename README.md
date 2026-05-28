@@ -81,6 +81,15 @@ Desde `web/`:
 
 🎥 URL del video:
 https://vimeo.com/1189588389?fl=ip&fe=ec
+
+## Video demostrativo (URL Online)
+🎥 URL del video:
+https://vimeo.com/1196394351?share=copy&fl=sv&fe=ci
+
+URL's:
+Frontend (netify): https://monumental-shortbread-3e724a.netlify.app/app/usuarios
+Backend (render) : https://backend-sistema-de-transporte-p-blico.onrender.com
+
 ## Licencia
 
 Proyecto educativo para el curso de Programación de Software.
